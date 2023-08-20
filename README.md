@@ -35,3 +35,36 @@ Same steps for soft VS stiff samples.
 **CUT&RUN data gives us** - list of LADs per sample, list of genes in LADs per sample, percentage of genome covered by LADs per sample, PCA of sample.
 
 ## Single-cell RNA Sequencing Analysis Pipeline
+The scRNA-seq data is a matrix where the columns are cells, the rows are genes, and each cell in the table is the amount of expression of that gene in that cell.
+
+Using the annotation file for rn7, I switch the gene stable id with the gene name if it’s known. Then I remove all the genes that are MT- genes.
+
+For the scRNA-seq analysis I used Scanpy, a library for single cell analysis in python based a lot on Seurat. 
+
+Preprocessing - keep genes that are expressed in at least 3 cells, keep cells that express at least 200 genes.
+
+Normalization - normalizes total counts per cell to 10,000, logarithmizes the data matrix by computing X = ln(X + 1), regresses out (mostly) unwanted sources of variation using simple linear regression, and scales data to unit variance and zero mean and truncate values to 10.
+
+Pca - Uses the implementation of scikit-learn
+
+Umap - First, compute a neighborhood graph of observations, then embed the neighborhood graph using UMAP and cluster cells using the Leiden algorithm.
+
+UMAP can be colored by - sample types (aOPC, nOPC, soft, stiff), sample labels (each sample by itself), leiden → cell types by gene markers, specific gene expression intensity (black&white graphs) to show different things. 
+
+The next step was to use the final matrix from the sc analysis to find the mean expression of each gene in each defined cluster. Then, using a list of rn7 neuronal gene markers, I created a matrix of columns=clusters, rows=gene markers. For each cluster I identified which cell type it is by the gene marker(s) that were most expressed.
+
+Use the scanpy rank_gene_groups method to get the log2fc and pvalue for each gene between the groups nOPC VS aOPC.
+
+Optimizing the **intensity threshold** by creating a histogram of the intensities and choosing the second peak in the bimodule graph. (sum_hist.png)
+
+Optimize the **thresholds** for **pvalue** and **log2foldchange** by iterating through multiple thresholds and creating a scatter plot of the ratio of aged-exclusive LAD genes that are down-regulated VS  the ratio of neonate-exclusive LAD genes that are up-regulated (which_log2.png). Choosing the threshold with the highest ratios.
+
+Define up/down-regulated genes as genes that pass **all** these thresholds.
+
+Find remyelination related genes in the up/down-regulated gene groups.
+
+See how many of the genes in the **aged**-exclusive LAD group are in the **down**-regulated group, how many of the genes in the **neonate**-exclusive LAD group are in the **up**-regulated group.
+
+Tweak thresholds to make ratios significant.
+
+**SCRNA-SEQ data gives us** - up/down-regulated genes, gene expression differences in cell types/sample types.
