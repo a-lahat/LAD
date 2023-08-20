@@ -1,4 +1,4 @@
-## LAD
-# CUT&RUN LAD Profiling Pipeline
+# LAD
+## CUT&RUN LAD Profiling Pipeline
 
-# Single-cell RNA Sequencing Analysis Pipeline
+## Single-cell RNA Sequencing Analysis Pipeline
