@@ -8,6 +8,9 @@ For each control and treatment mapped, sorted and indexed bam file of each sampl
 
 For each sample, find LADs using broad peak-caller **EPIC2**. The EPIC2 tool was installed from github.
 
+**How to run EPIC2**
+Epic2 is installed on a conda env in my python. I don't know if someone external will have access to it. If not - install epic2 in a conda env from github.
+
 For each sample, create bigwig tracks from the bed file output of EPIC2. First I used **bedClip** to clip the peaks by the chrom.sizes file. Then I used bedSort to sort the new bed file. Finally, I used **bedGraphToBigWig** to create the bigwig files. 
 
 To create the cmd for each of these bash scripts I use **runcmds.py** 
