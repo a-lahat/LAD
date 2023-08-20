@@ -1,4 +1,4 @@
-Use runcmds.py to create the command lines for all the bash scripts.
+Use runcmds.py to create the command lines for all the bash scripts and also the command lines for sanity checks. (its a bit of a mess, but useful)
 
 Create bigwigs from the LMNB1 bam outputs of picard (in my opinion the bigwigs from the epic2 output are less useful)
 
