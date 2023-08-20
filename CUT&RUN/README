@@ -11,3 +11,5 @@ Then take the output and run it through log2bedtobw and use the .clip.sort.bed o
 Use the anno and chrom.sizes file for the LAD encoding in encodingLADs.py
 First you create the binary matrices using the encoding functions.
 Then run the PCA using PCA functions.
+
+The ipy notebook is used for epic2 parameter optimization and some other validation graphs on the epic2 output.
