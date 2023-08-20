@@ -1,5 +1,8 @@
 Use runcmds.py to create the command lines for all the bash scripts.
 
+I uploaded some of the bedtools executables, but you might need to install bedtools.
+Download these executables to where you will run the command lines, and update the paths in the bash scripts.
+
 You need to run Epic2 in a conda env and use the output for the LAD PCA.
 
 Use the anno and chrom.sizes file for the LAD encoding in encodingLADs.py
