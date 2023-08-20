@@ -1,5 +1,7 @@
 Use runcmds.py to create the command lines for all the bash scripts.
 
+You need to run Epic2 in a conda env and use the output for the LAD PCA.
+
 Use the anno and chrom.sizes file for the LAD encoding in encodingLADs.py
 First you create the binary matrices using the encoding functions.
 Then run the PCA using PCA functions.
