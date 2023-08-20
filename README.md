@@ -2,7 +2,7 @@
 ## CUT&RUN LAD Profiling Pipeline
 For each control and treatment paired-end files of each sample, trim adaptors using **trim-galore**. This is done using a bash script I created that runs the trim-galore module. The script creates an output directory for each control and treatment paired-end files of each sample and writes the output of the trim-galore module to there.
 
-For each control and treatment paired-end files of each sample, map the paired-end reads to the rn7 genome. The genome index is found in the /sci/data/… and the mapping algorithm used is **Bowtie2**. After the mapping, using samtools, the sam file is converted to bam, then the bam is sorted and indexed. 
+For each control and treatment paired-end files of each sample, map the paired-end reads to the rn7 genome. The genome index is found in the /sci/data/… (look at the script for full path) and the mapping algorithm used is **Bowtie2**. After the mapping, using samtools, the sam file is converted to bam, then the bam is sorted and indexed. 
 
 For each control and treatment mapped, sorted and indexed bam file of each sample, duplicate reads are removed using **picard**. The modified bam is then indexed again using samtools. 
 
@@ -24,7 +24,7 @@ I expected the picard output to have ~80% of the reads as the bowtie output beca
 **EPIC2 parameters** - choosing chromosomes (canonical?), optimizing parameters - bin width, gap size
 
 **LAD PCA:**
-LAD genes PCA - use bedtools intersect to intersect epic2 output bed with rn7 annotation file to find which genes fall in LADs. This created a binary matrix of columns=genes, rows=samples, that describes which genes appear in LADs in which samples. PCA on this matrix shows us samples that are close together. Neonate samples are close together, but aged samples are far from neonates and from each other. This can be explained by - each cell goes through different things in life so it has different LADs. The question is how much is common between the aged sample LADs.
+LAD genes PCA - use bedtools intersect to intersect epic2 output bed with rn7 annotation file (look at the script for full path) to find which genes fall in LADs. This created a binary matrix of columns=genes, rows=samples, that describes which genes appear in LADs in which samples. PCA on this matrix shows us samples that are close together. Neonate samples are close together, but aged samples are far from neonates and from each other. This can be explained by - each cell goes through different things in life so it has different LADs. The question is how much is common between the aged sample LADs.
 
 LAD genome PCA - same as above but divide genome to bins of size X and for each bin mark 1 if this bin has a part of a LAD in it, 0 if not. 
 
