@@ -1,5 +1,7 @@
 Use runcmds.py to create the command lines for all the bash scripts.
 
+Create bigwigs from the LMNB1 bam outputs of picard (in my opinion the bigwigs from the epic2 output are less useful)
+
 I uploaded some of the bedtools executables, but you might need to install bedtools.
 Download these executables to where you will run the command lines, and update the paths in the bash scripts.
 
